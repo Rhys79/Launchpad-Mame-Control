@@ -7,6 +7,7 @@ TI Tiva C Launchpad firmware for Mame USB arcade controls adapter
 This project is intended to design firmware for the TI Tiva C Launchpad
 development board to enable it to be used as a USB gamepad/mouse adapter
 for arcade and other emulators.
+
 ======================
 
 Version 0.0.1 - Initial Commit
