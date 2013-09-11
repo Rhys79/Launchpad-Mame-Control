@@ -2,6 +2,7 @@ Launchpad-Mame-Control
 ======================
 
 TI Tiva C Launchpad firmware for Mame USB arcade controls adapter
+
 ======================
 
 This project is intended to design firmware for the TI Tiva C Launchpad
