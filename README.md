@@ -19,18 +19,31 @@ buttons, gamepad two has 8 buttons, and the mouse has two buttons.
 Pinout -
 
 Port A Pins 0-7 - Gamepad One buttons 1-8
+
 Port B Pins 0-7 - Gamepad Two buttons 1-8
+
 Port C Pins 0-3 - Gamepad One buttons 9-12
+
 Port C Pin 5    - Mouse Y Axis PHA
+
 Port C Pin 6    - Mouse Y Axis PHB
+
 Port D Pins 0-3 - Gamepad One D-Pad
+
 Port D Pin 4    - USB D- (Onboard USB Device Port)
+
 Port D Pin 5    - USB D+ (Onboard USB Device Port)
+
 Port D Pin 6    - Mouse X Axis PHA
+
 Port D Pin 7    - Mouse X Axis PHB
+
 Port E Pins 0-1 - Mouse Buttons
+
 Port E Pins 2-5 - Gamepad Two D-Pad
+
 Port F Pin 4    - User SW1 (Onboard Button One)
+
 Port F Pins 1-3 - Status LED (Onboard RGB LED)
 
 User SW1 onboard is used to place the board in programming mode as
