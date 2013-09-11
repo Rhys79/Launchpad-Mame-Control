@@ -303,47 +303,69 @@ CustomHidChangeHandler(void)
 		pad2Report[1] =~GPIOPinRead(GPIO_PORTB_BASE, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3|
 				GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7);
 
-		if(g_ui8Pad1 != pad1Report)
+		if(g_ui8Pad1 != pad1Report && g_ui8Pad1Tick == 0)
+		{
+			g_ui8Pad1Tick++;
+			g_ui8Pad1[0] = pad1Report[0];
+			g_ui8Pad1[1] = pad1Report[1];
+			g_ui8Pad1[2] = pad1Report[2];
+		}
+		else if(g_ui8Pad1 == pad1Report && g_ui8Pad1Tick != 0)
 		{
 			g_ui8Pad1Tick++;
 			if(g_ui8Pad1Tick == 5)
 			{
 				SendHIDReport(1,pad1Report);
-				g_ui8Pad1Tick=0;
+				g_ui8Pad1Tick = 0;
 			}
 			g_ui8Pad1[0] = pad1Report[0];
 			g_ui8Pad1[1] = pad1Report[1];
 			g_ui8Pad1[2] = pad1Report[2];
 		}
 
-		if(g_ui8Pad2 != pad2Report)
+		if(g_ui8Pad2 != pad2Report && g_ui8Pad2Tick == 0)
+		{
+			g_ui8Pad2Tick++;
+			g_ui8Pad2[0] = pad2Report[0];
+			g_ui8Pad2[1] = pad2Report[1];
+		}
+		else if(g_ui8Pad2 == pad2Report && g_ui8Pad2Tick != 0)
 		{
 			g_ui8Pad2Tick++;
 			if(g_ui8Pad2Tick == 5)
 			{
 				SendHIDReport(2,pad2Report);
-				g_ui8Pad2Tick=0;
+				g_ui8Pad2Tick = 0;
 			}
 			g_ui8Pad2[0] = pad2Report[0];
 			g_ui8Pad2[1] = pad2Report[1];
+			g_ui8Pad2[2] = pad2Report[2];
 		}
 
-		if(g_ui8Mouse[0] != mouseReport[0])
+		if(g_ui8Mouse[0] != mouseReport[0] && g_ui8MouseTick == 0)
 		{
 			g_ui8MouseTick++;
-			if(g_ui8Pad1Tick == 5)
+			g_ui8Mouse[0] = mouseReport[0];
+		}
+		else if(g_ui8Mouse[0] == mouseReport[0] && g_ui8MouseTick != 0)
+		{
+			g_ui8MouseTick++;
+			if(g_ui8MouseTick == 5)
 			{
 				SendHIDReport(3,mouseReport);
+				g_ui8MouseTick++ = 0;
 			}
 			g_ui8Mouse[0] = mouseReport[0];
 		}
 		if(g_ui8Mouse[1] != mouseReport[1])
 		{
 			SendHIDReport(3,mouseReport);
+			g_ui8Mouse[1] = mouseReport[1];
 		}
 		else if(g_ui8Mouse[2] != mouseReport[2])
 		{
 			SendHIDReport(3,mouseReport);
+			g_ui8Mouse[2] == mouseReport[2];
 		}
 }
 
