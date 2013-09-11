@@ -104,6 +104,9 @@ volatile signed char g_ui8Mouse[3];
 volatile char g_ui8Pad1Tick;
 volatile char g_ui8Pad2Tick;
 volatile char g_ui8MouseTick;
+volatile char g_ui8Pad1ResetTick;
+volatile char g_ui8Pad2ResetTick;
+volatile char g_ui8MouseResetTick;
 
 //*****************************************************************************
 //
@@ -322,6 +325,19 @@ CustomHidChangeHandler(void)
 			g_ui8Pad1[1] = pad1Report[1];
 			g_ui8Pad1[2] = pad1Report[2];
 		}
+		else if (g_ui8Pad1 != pad1Report && g_ui8Pad1Tick != 0)
+		{
+			g_ui8Pad1ResetTick++;
+			if(g_ui8Pad1ResetTick == 5)
+			{
+				g_ui8Pad1ResetTick = 0;
+				g_ui8Pad1Tick = 0;
+				g_ui8Pad1[0] = pad1Report[0];
+				g_ui8Pad1[1] = pad1Report[1];
+				g_ui8Pad1[2] = pad1Report[2];
+			}
+		}
+
 
 		if(g_ui8Pad2 != pad2Report && g_ui8Pad2Tick == 0)
 		{
@@ -339,7 +355,17 @@ CustomHidChangeHandler(void)
 			}
 			g_ui8Pad2[0] = pad2Report[0];
 			g_ui8Pad2[1] = pad2Report[1];
-			g_ui8Pad2[2] = pad2Report[2];
+		}
+		else if (g_ui8Pad2 != pad2Report && g_ui8Pad2Tick != 0)
+		{
+			g_ui8Pad2ResetTick++;
+			if(g_ui8Pad2ResetTick == 5)
+			{
+				g_ui8Pad2ResetTick = 0;
+				g_ui8Pad2Tick = 0
+				g_ui8Pad2[0] = pad2Report[0];
+				g_ui8Pad2[1] = pad2Report[1];
+			}
 		}
 
 		if(g_ui8Mouse[0] != mouseReport[0] && g_ui8MouseTick == 0)
@@ -356,6 +382,16 @@ CustomHidChangeHandler(void)
 				g_ui8MouseTick++ = 0;
 			}
 			g_ui8Mouse[0] = mouseReport[0];
+		}
+		else if (g_ui8Mouse != mouseReport && g_ui8MouseTick != 0)
+		{
+			g_ui8MouseResetTick++;
+			if(g_ui8MouseResetTick == 5)
+			{
+				g_ui8MouseResetTick = 0;
+				g_ui8MouseTick = 0;
+				g_ui8Mouse[0] = mouseReport[0];
+			}
 		}
 		if(g_ui8Mouse[1] != mouseReport[1])
 		{
