@@ -362,7 +362,7 @@ CustomHidChangeHandler(void)
 			if(g_ui8Pad2ResetTick == 5)
 			{
 				g_ui8Pad2ResetTick = 0;
-				g_ui8Pad2Tick = 0
+				g_ui8Pad2Tick = 0;
 				g_ui8Pad2[0] = pad2Report[0];
 				g_ui8Pad2[1] = pad2Report[1];
 			}
@@ -379,7 +379,7 @@ CustomHidChangeHandler(void)
 			if(g_ui8MouseTick == 5)
 			{
 				SendHIDReport(3,mouseReport);
-				g_ui8MouseTick++ = 0;
+				g_ui8MouseTick = 0;
 			}
 			g_ui8Mouse[0] = mouseReport[0];
 		}
