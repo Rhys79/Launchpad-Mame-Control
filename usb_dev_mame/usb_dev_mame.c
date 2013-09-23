@@ -79,6 +79,13 @@
 
 //*****************************************************************************
 //
+// Pre-scalar for mouse input.
+//
+//*****************************************************************************
+#define MOUSE_SCALAR 2
+
+//*****************************************************************************
+//
 // This global indicates whether or not we are connected to a USB host.
 //
 //*****************************************************************************
@@ -367,9 +374,9 @@ CustomHidChangeHandler(void)
 
 	// Get mouse position data
 	//
-	g_ui8Mouse_Debounced[1] = QEIPositionGet(QEI0_BASE)-127;
+	g_ui8Mouse_Debounced[1] = QEIPositionGet(QEI0_BASE)-127 * MOUSE_SCALAR;
 	QEIPositionSet(QEI0_BASE, 127);
-	g_ui8Mouse_Debounced[2] = QEIPositionGet(QEI1_BASE)-127;
+	g_ui8Mouse_Debounced[2] = QEIPositionGet(QEI1_BASE)-127 * MOUSE_SCALAR;
 	QEIPositionSet(QEI1_BASE, 127);
 
 	bool Equals = true;
